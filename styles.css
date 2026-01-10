@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Inconsolata", sans-serif;
+}
+
+.container {
+    background-color: black;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    color: rgb(79, 79, 79);
+}
