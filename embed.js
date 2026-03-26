@@ -21,7 +21,7 @@
   
   // Load the clock script from the same directory as this embed script
   const clockScript = document.createElement('script');
-  clockScript.src = baseUrl + '/interstellar-clock.iife.js';
+  clockScript.src = baseUrl + '/embedded.iife.js';
   
   // Initialize after both load
   let loaded = 0;
@@ -34,7 +34,7 @@
   
   // Add error handlers
   threeScript.onerror = () => console.error('Failed to load Three.js');
-  clockScript.onerror = () => console.error('Failed to load Interstellar Clock');
+  clockScript.onerror = () => console.error('Failed to load Interstellar Clock from: ' + clockScript.src);
   
   threeScript.onload = init;
   clockScript.onload = init;

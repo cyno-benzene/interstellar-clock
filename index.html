@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Interstellar Clock</title>
     <link href="styles.css" type="text/css" rel="stylesheet">
-    </link>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -18,5 +17,10 @@
     <div class="container" id="container">
         <div id="scene"></div>
     </div>
-    <script type="module" src="main.js"></script>
+    <script type="module">
+        import { initInterstellarClock } from './main.js';
+        initInterstellarClock('container');
+    </script>
 </body>
+
+</html>
