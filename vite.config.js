@@ -1,21 +1,9 @@
 import { defineConfig } from 'vite';
-import { copy } from 'vite-plugin-copy';
+import fs from 'fs';
+import path from 'path';
 
 export default defineConfig({
   base: '/interstellar-clock/',
-  plugins: [
-    {
-      name: 'copy-embed-js',
-      apply: 'build',
-      generateBundle() {
-        this.emitFile({
-          type: 'asset',
-          fileName: 'embed.js',
-          source: getEmbedScript()
-        });
-      }
-    }
-  ],
   build: {
     outDir: 'dist',
     rollupOptions: {
@@ -34,11 +22,13 @@ export default defineConfig({
         dir: 'dist'
       }
     }
-  }
-});
-
-function getEmbedScript() {
-  return `(function() {
+  },
+  plugins: [
+    {
+      name: 'generate-embed-script',
+      apply: 'build',
+      writeBundle() {
+        const embedContent = `(function() {
   // Get the base URL of where this script is hosted
   const scriptUrl = new URL(document.currentScript.src);
   const baseUrl = scriptUrl.origin + scriptUrl.pathname.substring(0, scriptUrl.pathname.lastIndexOf('/'));
@@ -82,4 +72,11 @@ function getEmbedScript() {
   document.head.appendChild(threeScript);
   document.head.appendChild(clockScript);
 })();`;
-}
+
+        const distPath = path.resolve('dist', 'embed.js');
+        fs.writeFileSync(distPath, embedContent, 'utf-8');
+        console.log('✓ Generated embed.js');
+      }
+    }
+  ]
+});
