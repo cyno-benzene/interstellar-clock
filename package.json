@@ -2,10 +2,7 @@
   "name": "interstellar-clock",
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/interstellar-clock.umd.js",
-  "module": "dist/interstellar-clock.es.js",
-  "browser": "dist/interstellar-clock.iife.js",
-  "files": ["dist"],
+  "main": "dist/embedded.iife.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
