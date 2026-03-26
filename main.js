@@ -6,15 +6,19 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
 
-function app() {
+export function initInterstellarClock(containerId = 'interstellar-clock-container') {
   const container = document.getElementById('container');
 
+  if(!container) {
+    console.error(`Container id ${container_id} not found`);
+    return;
+  }
   // Scene setup
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
 
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  const width = container.clientWidth || window.innerWidth;
+  const height = container.clientHeight || window.innerHeight;
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
   camera.position.set(0, -20, 20);
   camera.lookAt(0, 0, 0);
@@ -216,8 +220,8 @@ function app() {
   }
 
   window.addEventListener('resize', () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = container.clientWidth || window.innerWidth;
+    const height = container.clientHeight || window.innerHeight;
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
@@ -227,4 +231,8 @@ function app() {
   animate(0);
 }
 
-app();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => initInterstellarClock());
+} else {
+  initInterstellarClock();
+}
