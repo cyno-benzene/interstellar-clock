@@ -11,5 +11,26 @@ An Interstellar-inspired temporal visualization built with Three.js. It transfor
 2. Serve the directory using a local web server (e.g., `python -m http.server 8000`).
 3. Open `index.html` in a modern browser.
 
-## Deployment
-This project is ready for GitHub Pages. Simply enable Pages in your repository settings to host the live demo.
+
+## Usage Examples
+
+**In a README.md:**
+```html
+<div id="interstellar-clock-container" style="width: 100%; height: 600px;"></div>
+<script src="https://unpkg.com/three@v0.149.0/build/three.min.js"></script>
+<script src="https://cyno-benzene.github.io/interstellar-clock/interstellar-clock.iife.js"></script>
+<script>
+  window.InterstellarClock.initInterstellarClock('interstellar-clock-container');
+</script>
+```
+
+**Single embed script (simplest):**
+```html
+<script src="https://cyno-benzene.github.io/interstellar-clock/embed.js"></script>
+```
+
+**Using jsDelivr (alternative to GitHub Pages):**
+```html
+<script src="https://cdn.jsdelivr.net/gh/cyno-benzene/interstellar-clock@main/dist/interstellar-clock.iife.js"></script>
+```
+
